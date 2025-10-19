@@ -1,72 +1,373 @@
-/* Mobile Styles (до 768px) */
-body { 
-    padding: 10px; 
-    font-size: 14px;
+/* Mobile Styles - up to 768px */
+@media screen and (max-width: 768px) {
+    body { 
+        padding: 10px; 
+        font-size: 14px;
+        background: #f8f9fa;
+    }
+    
+    .header { 
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white; 
+        padding: 20px 15px; 
+        margin-bottom: 20px; 
+        border-radius: 8px;
+        text-align: center;
+    }
+    
+    .header h1 {
+        font-size: 1.5em;
+        margin-bottom: 8px;
+    }
+    
+    .header p {
+        font-size: 0.9em;
+        opacity: 0.9;
+    }
+    
+    .time-tracker { 
+        background: white;
+        padding: 20px 15px; 
+        margin-bottom: 20px; 
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .time-tracker h2 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .button-group { 
+        margin: 20px 0; 
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn { 
+        padding: 14px 20px; 
+        font-size: 15px;
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+    
+    /* Формы редактирования */
+    .edit-form {
+        background: #f8f9fa;
+        padding: 20px 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        border: 1px solid #dee2e6;
+    }
+    
+    .edit-form h3 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    
+    .form-group label {
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #495057;
+    }
+    
+    /* Исправление полей ввода времени */
+    input[type="time"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px 15px !important;
+        font-size: 16px !important; /* Убираем zoom на iOS */
+        border: 2px solid #e9ecef !important;
+        border-radius: 6px !important;
+        background: white !important;
+        box-sizing: border-box !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+    }
+    
+    /* Убираем стандартные стрелки в time input */
+    input[type="time"]::-webkit-calendar-picker-indicator {
+        background: transparent;
+        padding: 8px;
+        cursor: pointer;
+    }
+    
+    textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px 15px !important;
+        font-size: 16px !important;
+        border: 2px solid #e9ecef !important;
+        border-radius: 6px !important;
+        font-family: inherit;
+        resize: vertical;
+        min-height: 100px;
+        box-sizing: border-box !important;
+    }
+    
+    /* Фокус состояния */
+    input[type="time"]:focus,
+    textarea:focus {
+        outline: none !important;
+        border-color: #007bff !important;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1) !important;
+    }
+    
+    /* История */
+    .history {
+        background: white;
+        padding: 20px 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .history h2 {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        margin: 0 -15px;
+        padding: 0 15px;
+        position: relative;
+    }
+    
+    .table-container::after {
+        content: '← прокрутите →';
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        font-size: 10px;
+        color: #6c757d;
+        opacity: 0.7;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2px 6px;
+        border-radius: 8px;
+    }
+    
+    .history-table { 
+        font-size: 12px; 
+        min-width: 600px;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .history-table th,
+    .history-table td {
+        padding: 10px 8px;
+        border-bottom: 1px solid #e9ecef;
+        white-space: nowrap;
+    }
+    
+    .history-table th {
+        background: #f8f9fa;
+        font-weight: 600;
+        border-bottom: 2px solid #dee2e6;
+    }
+    
+    .description-table-cell {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .no-data {
+        text-align: center;
+        padding: 30px;
+        color: #6c757d;
+        font-style: italic;
+    }
+    
+    /* Статусы */
+    .status {
+        padding: 12px 15px;
+        border-radius: 6px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    .status.working {
+        background: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+    }
+    
+    .status.completed {
+        background: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+    }
+    
+    .status.not-started {
+        background: #e2e3e5;
+        color: #383d41;
+        border-left: 4px solid #6c757d;
+    }
+    
+    /* Time info */
+    .time-info {
+        background: #e9ecef;
+        padding: 15px;
+        border-radius: 6px;
+        margin: 15px 0;
+        border-left: 4px solid #007bff;
+    }
+    
+    .time-info p {
+        margin-bottom: 8px;
+        font-size: 0.95em;
+    }
+    
+    /* Description form */
+    .description-form {
+        background: #f8f9fa;
+        padding: 20px 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border: 1px solid #dee2e6;
+    }
+    
+    .description-form h3 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .description-preview {
+        background: white;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 15px;
+        border-left: 4px solid #28a745;
+    }
+    
+    /* Logout */
+    .logout {
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .logout a {
+        display: inline-block;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #dc3545, #c82333);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 500;
+        width: 100%;
+        max-width: 200px;
+        text-align: center;
+    }
 }
 
-.header { 
-    padding: 15px; 
-    margin-bottom: 15px; 
-    text-align: center;
+/* Small Mobile Styles - up to 480px */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    
+    .header {
+        padding: 15px 12px;
+    }
+    
+    .time-tracker,
+    .history,
+    .description-form,
+    .edit-form {
+        padding: 15px 12px;
+    }
+    
+    .table-container {
+        margin: 0 -12px;
+        padding: 0 12px;
+    }
+    
+    .history-table {
+        font-size: 11px;
+        min-width: 550px;
+    }
+    
+    .history-table th,
+    .history-table td {
+        padding: 8px 6px;
+    }
+    
+    /* Скрываем менее важные колонки на очень маленьких экранах */
+    .history-table th:nth-child(3), /* Окончание */
+    .history-table td:nth-child(3),
+    .history-table th:nth-child(4), /* Часов */
+    .history-table td:nth-child(4) {
+        display: none;
+    }
+    
+    input[type="time"],
+    textarea {
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+    }
+    
+    .btn {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
 }
 
-.header h1 {
-    font-size: 1.5em;
-}
-
-.time-tracker { 
-    padding: 15px; 
-    margin-bottom: 15px; 
-}
-
-.button-group { 
-    margin: 15px 0; 
-    flex-direction: column;
-    gap: 10px;
-}
-
-.btn { 
-    padding: 12px 15px; 
-    font-size: 14px;
-    width: 100%;
-}
-
-.history-table { 
-    font-size: 12px; 
-}
-
-.history-table th,
-.history-table td {
-    padding: 6px 4px;
-}
-
-.form-group { 
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.form-group label { 
-    width: 100%; 
-    margin-bottom: 5px;
-}
-
-.description-table-cell {
-    max-width: 150px;
-}
-
-/* Скрываем некоторые колонки на мобильных */
-@media (max-width: 480px) {
+/* Landscape Mobile Optimization */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    .button-group {
+        flex-direction: row;
+    }
+    
+    .btn {
+        flex: 1;
+    }
+    
+    /* Показываем скрытые колонки в ландшафте */
     .history-table th:nth-child(3),
     .history-table td:nth-child(3),
     .history-table th:nth-child(4),
     .history-table td:nth-child(4) {
-        display: none;
+        display: table-cell;
     }
 }
 
-/* Улучшаем отображение форм на маленьких экранах */
-input[type="time"], 
-textarea {
-    width: 100%;
-    font-size: 16px; /* Убираем zoom на iOS */
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    input[type="time"],
+    textarea,
+    .btn {
+        min-height: 44px; /* Минимальная высота для touch */
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+    }
 }

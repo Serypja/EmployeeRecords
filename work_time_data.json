@@ -6,8 +6,14 @@
       "total_hours": "9.15",
       "status": "completed",
       "employee_name": "Петр Петров",
-      "description": "",
-      "edited": true
+      "description": "ШУ-13 сборка шкафа.",
+      "edited": true,
+      "actual_start_time": "08:00",
+      "actual_end_time": "17:09",
+      "edited_start_time": "2025-10-19 13:53",
+      "edited_end_time": "2025-10-19 13:53",
+      "original_start_time": "08:00",
+      "original_end_time": "17:09"
     }
   },
   "employee2": {

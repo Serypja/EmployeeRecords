@@ -1,20 +1,103 @@
-/* Tablet Styles for Director */
-@media (max-width: 1024px) {
+/* Tablet Styles - 768px to 1024px */
+@media screen and (max-width: 1024px) {
+    body {
+        padding: 15px;
+        background: #f8f9fa !important;
+    }
+    
     .header {
-        padding: 20px;
-        margin-bottom: 20px;
+        background: linear-gradient(135deg, #28a745, #20c997) !important;
+        color: white !important;
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 10px;
+    }
+    
+    .header h1 {
+        font-size: 1.8em;
+        color: white !important;
+    }
+    
+    .header p {
+        font-size: 1em;
+        color: white !important;
     }
     
     .section {
         padding: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        border-radius: 10px;
+        background: white !important;
+        border: 1px solid #e0e0e0 !important;
+    }
+    
+    .section h2 {
+        font-size: 1.2em;
+        margin-bottom: 18px;
+        color: #2c3e50 !important;
+    }
+    
+    .table-container {
+        margin: 0 -10px;
+        background: white !important;
     }
     
     .data-table {
         font-size: 13px;
+        min-width: 1000px;
+        background: white !important;
+    }
+    
+    .data-table th {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+        color: #2c3e50 !important;
+        padding: 12px 10px;
+    }
+    
+    .data-table td {
+        padding: 12px 10px;
+        color: #333 !important;
+        background: white !important;
+    }
+    
+    /* Status Styles */
+    .data-table tr.working { 
+        background: linear-gradient(135deg, #d4edda, #c3e6cb) !important;
+        border-left: 4px solid #28a745 !important;
+    }
+    
+    .data-table tr.completed { 
+        background: linear-gradient(135deg, #f8d7da, #f5c6cb) !important;
+        border-left: 4px solid #dc3545 !important;
+    }
+    
+    .data-table tr.not-started { 
+        background: linear-gradient(135deg, #e2e3e5, #d6d8db) !important;
+        border-left: 4px solid #6c757d !important;
     }
     
     .description-cell {
-        max-width: 200px;
+        max-width: 250px;
+    }
+    
+    .edit-history-table {
+        font-size: 12px;
+        min-width: 1200px;
+    }
+    
+    .logout a {
+        padding: 12px 25px;
+        font-size: 0.95em;
+        background: linear-gradient(135deg, #dc3545, #c82333) !important;
+        color: white !important;
+    }
+    
+    .edited-badge {
+        font-size: 9px;
+        padding: 1px 4px;
+    }
+    
+    .edit-time {
+        font-size: 11px;
     }
 }
