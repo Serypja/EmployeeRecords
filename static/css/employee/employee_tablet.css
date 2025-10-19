@@ -1,0 +1,41 @@
+/* Tablet Styles (769px - 1024px) */
+body { 
+    max-width: 100%; 
+    padding: 15px; 
+}
+
+.header { 
+    padding: 20px; 
+    margin-bottom: 20px; 
+}
+
+.time-tracker { 
+    padding: 20px; 
+    margin-bottom: 20px; 
+}
+
+.button-group { 
+    margin: 20px 0; 
+    flex-direction: column;
+}
+
+.btn { 
+    padding: 12px 20px; 
+    width: 100%;
+}
+
+.history-table { 
+    font-size: 13px; 
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.form-group label { 
+    width: 120px; 
+}
+
+.description-table-cell {
+    max-width: 200px;
+}

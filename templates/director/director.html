@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Панель директора{% endblock %}
+
+{% block styles %}
+    <!-- Desktop First -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/director/director_desktop.css') }}">
+    
+    <!-- Tablet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/director/director_tablet.css') }}" 
+          media="screen and (max-width: 1024px)">
+    
+    <!-- Mobile -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/director/director_mobile.css') }}" 
+          media="screen and (max-width: 768px)">
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Панель директора</h1>
+        <p>Добро пожаловать, {{ name }}!</p>
+    </div>
+    
+    <div class="section">
+        <h2>👥 Рабочее время сотрудников сегодня ({{ today_key }})</h2>
+        {% if today_work %}
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Сотрудник</th>
+                        <th>Начало работы</th>
+                        <th>Окончание</th>
+                        <th>Реальное начало</th>
+                        <th>Реальное окончание</th>
+                        <th>Отработано часов</th>
+                        <th>Описание работы</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for username, data in today_work.items() %}
+                    <tr class="{% if data.status == 'working' %}working{% elif data.status == 'completed' %}completed{% else %}not-started{% endif %}">
+                        <td>{{ data.employee_name }} ({{ username }})</td>
+                        <td>
+                            {{ data.start_time }}
+                            {% if data.edited %}
+                                <br><small class="edited-badge">✏️ редакт.</small>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ data.end_time or '--:--' }}
+                            {% if data.edited and data.end_time %}
+                                <br><small class="edited-badge">✏️ редакт.</small>
+                            {% endif %}
+                        </td>
+                        <td class="actual-time">{{ data.actual_start_time or '--:--' }}</td>
+                        <td class="actual-time">{{ data.actual_end_time or '--:--' }}</td>
+                        <td>{{ data.total_hours or '0' }}</td>
+                        <td class="description-cell" title="{{ data.description or '' }}">
+                            {{ data.description|truncate(50) if data.description else '—' }}
+                        </td>
+                        <td>
+                            {% if data.status == 'working' %}
+                                🟢 Работает
+                            {% elif data.status == 'completed' %}
+                                🔴 Завершил
+                            {% else %}
+                                ⚪ Не работал
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="no-data">Сегодня никто не работал</p>
+        {% endif %}
+    </div>
+    
+    <div class="section">
+        <h2>📊 Общая статистика</h2>
+        {% if total_stats %}
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Сотрудник</th>
+                        <th>Всего рабочих дней</th>
+                        <th>Всего часов</th>
+                        <th>Среднее в день</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for username, stats in total_stats.items() %}
+                    <tr>
+                        <td>{{ stats.name }} ({{ username }})</td>
+                        <td>{{ stats.work_days }}</td>
+                        <td>{{ stats.total_hours }}</td>
+                        <td>
+                            {% if stats.work_days > 0 %}
+                                {{ "%.2f"|format(stats.total_hours / stats.work_days) }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="no-data">Нет данных о рабочем времени</p>
+        {% endif %}
+    </div>
+    
+    <div class="section">
+        <h2>🕒 История редактирований времени</h2>
+        {% if edit_history %}
+        <div class="table-container">
+            <table class="data-table edit-history-table">
+                <thead>
+                    <tr>
+                        <th>Сотрудник</th>
+                        <th>Дата</th>
+                        <th>Текущее время</th>
+                        <th>Оригинальное время</th>
+                        <th>Реальное время</th>
+                        <th>Когда редактировал</th>
+                        <th>Часов</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for edit in edit_history %}
+                    <tr class="edit-row">
+                        <td>{{ edit.employee_name }} ({{ edit.username }})</td>
+                        <td>{{ edit.date }}</td>
+                        <td>
+                            <strong>{{ edit.current_start }} - {{ edit.current_end }}</strong>
+                        </td>
+                        <td class="original-time">
+                            {{ edit.original_start }} - {{ edit.original_end }}
+                        </td>
+                        <td class="actual-time">
+                            {{ edit.actual_start }} - {{ edit.actual_end }}
+                        </td>
+                        <td class="edit-time">
+                            Начало: {{ edit.edited_start_time }}<br>
+                            Окончание: {{ edit.edited_end_time }}
+                        </td>
+                        <td>{{ edit.total_hours }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="no-data">Нет истории редактирований</p>
+        {% endif %}
+    </div>
+    
+    <div class="logout">
+        <a href="{{ url_for('auth.logout') }}">Выйти</a>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/director.js') }}"></script>
+{% endblock %}

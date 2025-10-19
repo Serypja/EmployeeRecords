@@ -1,0 +1,41 @@
+/* Mobile Styles for Director */
+@media (max-width: 768px) {
+    .header {
+        padding: 15px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .header h1 {
+        font-size: 1.5em;
+    }
+    
+    .section {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+    
+    .data-table {
+        font-size: 12px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 6px 4px;
+    }
+    
+    .description-cell {
+        max-width: 150px;
+    }
+    
+    /* Скрываем некоторые колонки на маленьких экранах */
+    @media (max-width: 480px) {
+        .data-table th:nth-child(3),
+        .data-table td:nth-child(3),
+        .data-table th:nth-child(4),
+        .data-table td:nth-child(4) {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+/* Desktop Styles for Login */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.login-form {
+    margin: 20px 0;
+}
+
+.login-help {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #6c757d;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}

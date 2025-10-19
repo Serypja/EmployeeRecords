@@ -1,0 +1,314 @@
+/* ===== ОБЩИЕ СТИЛИ ДЛЯ ВСЕХ СТРАНИЦ И УСТРОЙСТВ ===== */
+
+/* Сброс стилей и базовые настройки */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Утилитарные классы */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* ===== СТИЛИ КНОПОК ===== */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn:disabled {
+    background: #6c757d !important;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Цвета кнопок */
+.btn-start { 
+    background: #28a745; 
+    color: white; 
+}
+
+.btn-end { 
+    background: #dc3545; 
+    color: white; 
+}
+
+.btn-edit { 
+    background: #ffc107; 
+    color: black; 
+}
+
+.btn-save { 
+    background: #17a2b8; 
+    color: white; 
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+/* ===== СТИЛИ СТАТУСОВ ===== */
+.status {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.working { 
+    color: #28a745;
+}
+
+.completed { 
+    color: #dc3545;
+}
+
+.not-started { 
+    color: #6c757d;
+}
+
+/* ===== СТИЛИ ФОРМ ===== */
+.form-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 120px;
+    vertical-align: top;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="time"],
+input[type="email"],
+select,
+textarea {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    flex: 1;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+    width: 100%;
+    padding: 10px;
+}
+
+/* ===== СТИЛИ ТАБЛИЦ ===== */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.data-table th, 
+.data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.data-table th {
+    background: #f8f9fa;
+}
+
+/* ===== СПЕЦИФИЧНЫЕ ФОРМЫ ===== */
+.edit-form {
+    background: #fff3cd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.description-form {
+    background: #e7f3ff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+/* ===== СТИЛИ ДЛЯ ОПИСАНИЙ ===== */
+.description-preview { 
+    background: #f8f9fa; 
+    padding: 12px; 
+    border-radius: 4px; 
+    margin-top: 10px;
+    white-space: pre-wrap;
+    border-left: 4px solid #007bff;
+}
+
+.description-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 200px;
+}
+
+/* ===== СТИЛИ СООБЩЕНИЙ ===== */
+.result-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.success { 
+    color: #28a745;
+}
+
+.error { 
+    color: #dc3545;
+}
+
+.no-data {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* ===== СТИЛИ ВРЕМЕНИ И ИНФО ===== */
+.time-info p {
+    margin: 8px 0;
+}
+
+/* ===== СТИЛИ ВЫХОДА ===== */
+.logout {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.logout a { 
+    color: #007bff; 
+    text-decoration: none; 
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.logout a:hover { 
+    background: #007bff; 
+    color: white; 
+}
+
+/* ===== ОБЩИЕ СТИЛИ КОНТЕЙНЕРОВ ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.time-tracker {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    margin: 20px 0;
+}
+
+.history {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+/* ===== ОТЗЫВЧИВОСТЬ ДЛЯ МОБИЛЬНЫХ ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 12px 15px;
+        font-size: 14px;
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .form-group label {
+        width: 100%;
+        margin-bottom: 5px;
+        min-width: auto;
+    }
+    
+    input[type="time"],
+    textarea {
+        width: 100%;
+        font-size: 16px;
+    }
+    
+    .description-cell {
+        max-width: 150px;
+    }
+}

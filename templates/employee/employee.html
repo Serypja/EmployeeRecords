@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Панель сотрудника{% endblock %}
+
+{% block styles %}
+    <!-- Desktop First -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employee/employee_desktop.css') }}">
+    
+    <!-- Tablet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employee/employee_tablet.css') }}" 
+          media="screen and (max-width: 1024px)">
+    
+    <!-- Mobile -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/employee/employee_mobile.css') }}" 
+          media="screen and (max-width: 768px)">
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1>Панель сотрудника</h1>
+        <p>Добро пожаловать, {{ name }}!</p>
+    </div>
+    
+    <div class="time-tracker">
+        <h2>📊 Учёт рабочего времени</h2>
+        <div class="status" id="status">
+            {% if today_data.status == 'working' %}
+                <span class="working">🟢 Рабочий день начат в {{ today_data.start_time }}</span>
+            {% elif today_data.status == 'completed' %}
+                <span class="completed">🔴 Рабочий день завершен</span>
+            {% else %}
+                <span class="not-started">⚪ Рабочий день не начат</span>
+            {% endif %}
+        </div>
+        
+        <div class="button-group">
+            <button class="btn btn-start" id="startBtn" 
+                    {% if today_data.status == 'working' or today_data.status == 'completed' %}disabled{% endif %}>
+                Начать рабочий день
+            </button>
+            <button class="btn btn-end" id="endBtn" 
+                    {% if today_data.status != 'working' %}disabled{% endif %}>
+                Завершить рабочий день
+            </button>
+        </div>
+        
+        {% if today_data %}
+        <div class="time-info">
+            <p><strong>Начало:</strong> <span id="startTime">{{ today_data.start_time or '--:--' }}</span></p>
+            <p><strong>Окончание:</strong> <span id="endTime">{{ today_data.end_time or '--:--' }}</span></p>
+            <p><strong>Отработано часов:</strong> <span id="totalHours">{{ today_data.total_hours or '0' }}</span></p>
+        </div>
+        {% endif %}
+        
+        <!-- Форма описания работы -->
+        <div class="description-form" id="descriptionForm">
+            <h3>📝 Описание работы за день</h3>
+            <form id="descriptionFormElement">
+                <input type="hidden" name="date" value="{{ today_key }}">
+                <div class="form-group">
+                    <label for="description">Чем занимались:</label>
+                    <textarea id="description" name="description" placeholder="Опишите задачи и работу, которую выполняли сегодня...">{{ today_data.description or '' }}</textarea>
+                </div>
+                <button type="submit" class="btn btn-save">Сохранить описание</button>
+            </form>
+            <div id="descriptionResult" class="result-message"></div>
+            
+            {% if today_data.description %}
+            <div class="description-preview">
+                <strong>Текущее описание:</strong><br>
+                {{ today_data.description }}
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Форма редактирования времени -->
+    <div class="edit-form {% if today_data.status != 'completed' %}hidden{% endif %}" id="editForm">
+        <h3>✏️ Редактировать время</h3>
+        <form id="editTimeForm">
+            <input type="hidden" name="date" value="{{ today_key }}">
+            <div class="form-group">
+                <label for="start_time">Время начала:</label>
+                <input type="time" id="start_time" name="start_time" value="{{ today_data.start_time or '09:00' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="end_time">Время окончания:</label>
+                <input type="time" id="end_time" name="end_time" value="{{ today_data.end_time or '18:00' }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description_edit">Описание работы:</label>
+                <textarea id="description_edit" name="description" placeholder="Опишите выполненную работу...">{{ today_data.description or '' }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-edit">Сохранить изменения времени</button>
+        </form>
+        <div id="editResult" class="result-message"></div>
+    </div>
+    
+    <div class="history">
+        <h2>📈 История за последние 7 дней</h2>
+        <div class="table-container">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Начало</th>
+                        <th>Окончание</th>
+                        <th>Часов</th>
+                        <th>Статус</th>
+                        <th>Описание</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for day in history %}
+                    <tr>
+                        <td>{{ day.date }}</td>
+                        <td>{{ day.start_time }}</td>
+                        <td>{{ day.end_time }}</td>
+                        <td>{{ day.total_hours }}</td>
+                        <td>{{ day.status }}</td>
+                        <td class="description-table-cell" title="{{ day.description }}">
+                            {{ day.description|truncate(50) if day.description else '—' }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="no-data">Нет данных за последние 7 дней</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="logout">
+        <a href="{{ url_for('auth.logout') }}">Выйти</a>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/employee/employee.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,66 @@
+/* Desktop Styles for Director */
+.header {
+    background: #28a745;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(40,167,69,0.3);
+}
+
+.section {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.data-table {
+    width: 100%;
+    font-size: 14px;
+}
+
+.description-cell {
+    max-width: 300px;
+}
+
+.working { background: #d4edda; }
+.completed { background: #f8d7da; }
+.not-started { background: #e2e3e5; }
+
+/* Дополнительные стили для директора */
+.actual-time {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.original-time {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.edit-time {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.edited-badge {
+    color: #ffc107;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.edit-row {
+    background: #fff3cd !important;
+}
+
+.edit-history-table {
+    font-size: 13px;
+}
+
+.edit-history-table th,
+.edit-history-table td {
+    padding: 8px 6px;
+}

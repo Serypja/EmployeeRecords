@@ -1,0 +1,72 @@
+/* Mobile Styles (до 768px) */
+body { 
+    padding: 10px; 
+    font-size: 14px;
+}
+
+.header { 
+    padding: 15px; 
+    margin-bottom: 15px; 
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.5em;
+}
+
+.time-tracker { 
+    padding: 15px; 
+    margin-bottom: 15px; 
+}
+
+.button-group { 
+    margin: 15px 0; 
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn { 
+    padding: 12px 15px; 
+    font-size: 14px;
+    width: 100%;
+}
+
+.history-table { 
+    font-size: 12px; 
+}
+
+.history-table th,
+.history-table td {
+    padding: 6px 4px;
+}
+
+.form-group { 
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-group label { 
+    width: 100%; 
+    margin-bottom: 5px;
+}
+
+.description-table-cell {
+    max-width: 150px;
+}
+
+/* Скрываем некоторые колонки на мобильных */
+@media (max-width: 480px) {
+    .history-table th:nth-child(3),
+    .history-table td:nth-child(3),
+    .history-table th:nth-child(4),
+    .history-table td:nth-child(4) {
+        display: none;
+    }
+}
+
+/* Улучшаем отображение форм на маленьких экранах */
+input[type="time"], 
+textarea {
+    width: 100%;
+    font-size: 16px; /* Убираем zoom на iOS */
+}

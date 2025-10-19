@@ -1,0 +1,30 @@
+{
+  "employee1": {
+    "2025-10-19": {
+      "start_time": "08:00",
+      "end_time": "17:09",
+      "total_hours": "9.15",
+      "status": "completed",
+      "employee_name": "Петр Петров",
+      "description": "",
+      "edited": true
+    }
+  },
+  "employee2": {
+    "2025-10-19": {
+      "start_time": "08:00",
+      "end_time": "17:03",
+      "total_hours": "9.05",
+      "status": "completed",
+      "employee_name": "Мария Сидорова",
+      "description": "Я сегодня сделал много и очень много",
+      "edited": true,
+      "actual_start_time": "12:50",
+      "actual_end_time": "12:51",
+      "edited_start_time": "2025-10-19 12:51",
+      "edited_end_time": "2025-10-19 12:51",
+      "original_start_time": "12:50",
+      "original_end_time": "12:51"
+    }
+  }
+}

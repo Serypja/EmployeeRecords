@@ -1,0 +1,17 @@
+/* Mobile Styles for Login */
+@media (max-width: 768px) {
+    .login-container {
+        margin: 50px auto;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    body {
+        padding: 10px;
+        background: white;
+    }
+    
+    .login-help {
+        font-size: 13px;
+    }
+}
